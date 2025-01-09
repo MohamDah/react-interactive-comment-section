@@ -5,6 +5,10 @@ import MakeComment from "./MakeComment";
 import { useState } from "react";
 import EditComment from "./EditComment";
 
+declare var require: any
+
+
+
 
 export default function Comment({ comment, data, setData, parent, toggleWarning }: {
     comment: CommentType | Reply,
@@ -175,7 +179,7 @@ export default function Comment({ comment, data, setData, parent, toggleWarning 
                 </div>
                 <div className="w-full">
                     <div className="h-8 md:h-10 flex items-center gap-2 md:gap-4 w-full">
-                        <img src={`src/${comment.user.image.webp}`} alt=""
+                        <img src={(comment.user.image.png)} alt=""
                             className="h-full" />
                         <p className="font-medium text-neutral-dark-blue md:text-lg">{comment.user.username}</p>
                         {data.currentUser.username === comment.user.username &&

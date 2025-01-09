@@ -11,7 +11,7 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
         return (
             <div className="flex border rounded-lg overflow-hidden" key={user.username}>
                 <button  onClick={() => chUser(user)} disabled={!!isUserCls} className={`w-full  flex h-12 md:h-16 px-3 py-2 items-center gap-3 overflow-x-hidden ${isUserCls}`}>
-                    <img src={`src/${user.image.png}`} alt="profile picture" className="h-full" />
+                    <img src={user.image.png} alt="profile picture" className="h-full" />
                     <p className="text-neutral-dark-blue text-base md:text-lg font-medium">{user.username}</p>
                     {isUserCls && <p className="font-medium text-neutral-dark-blue text-sm">Current User</p>}
                 </button>
@@ -45,8 +45,8 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
 
         const userObj: User = {
             image: {
-                png: "./images/avatars/image-default.png",
-                webp: "./images/avatars/image-default.png"
+                png: defautPfp,
+                webp: defautPfp
             },
             username: username
         }

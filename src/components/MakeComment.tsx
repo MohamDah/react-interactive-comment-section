@@ -74,7 +74,7 @@ export default function MakeComment({ replyTo, parent, data, setData, setShow }:
 
     return (
         <form onSubmit={handleNewComment} className="bg-neutral-white p-4 md:p-7 flex flex-col items-end md:flex-row md:items-start gap-6 rounded-lg w-full relative">
-            <img src={`src/${data.currentUser.image.png}`} alt=""
+            <img src={data.currentUser.image.png} alt=""
                 className="h-8 md:h-12 absolute md:relative left-5 bottom-6 md:left-0 md:bottom-0" />
             <textarea name="comment" id="comment" value={input} onChange={(e) => handleInput(e.target.value)}
                 className="border rounded-lg w-full md:flex-grow resize-none h-28 md:h-32 px-6 py-3 text-lg focus:outline-none focus:border-neutral-grayish-blue" placeholder="Add a comment...">
