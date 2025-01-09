@@ -80,7 +80,7 @@ export default function MakeComment({ replyTo, parent, data, setData, setShow }:
                 className="border rounded-lg w-full md:flex-grow resize-none h-28 md:h-32 px-6 py-3 text-lg focus:outline-none focus:border-neutral-grayish-blue" placeholder="Add a comment...">
                     
             </textarea>
-            <button type="submit" className="bg-primary-moderate-blue text-neutral-white w-24 md:w-28 h-10 md:h-12 rounded-lg md:text-lg font-medium hover:scale-105 transition-transform transform ease-linear">SEND</button>
+            <button type="submit" className="bg-primary-moderate-blue text-neutral-white w-24 md:w-28 h-10 md:h-12 rounded-lg md:text-lg font-medium hover:scale-105 transition-transform transform ease-linear">{parent ? "REPLY" : "SEND"}</button>
         </form>
     )
 }

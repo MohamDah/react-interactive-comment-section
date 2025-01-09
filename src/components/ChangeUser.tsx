@@ -18,7 +18,7 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
                 {
                 user.image.png === "./images/avatars/image-default.png" &&
                 user.username !== data.currentUser.username &&
-                <button className="px-2 bg-red-500 text-neutral-white font-medium" onClick={() => deleteUser(user)}>Delete</button>
+                <button className="px-2 bg-red-500 hover:bg-red-600 text-neutral-white font-medium" onClick={() => deleteUser(user)}>Delete</button>
                 }
             </div>
         )
@@ -72,6 +72,13 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
             const newPrev = { ...prev }
             newPrev.userList = userList
 
+            newPrev.comments = newPrev.comments.filter(i => i.user.username !== user.username);
+
+            newPrev.comments = newPrev.comments.map(i => {
+                i.replies = i.replies.filter(j => j.user.username !== user.username);
+                return i
+            })
+
             return newPrev
         })
 
@@ -84,7 +91,7 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
             <div className="w-full h-full bg-black opacity-50 fixed z-10 left-0 top-0">
             </div>
             <div className="bg-neutral-white max-w-[450px] w-11/12 md:max-w-none md:w-[450px] fixed z-20 -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2 p-6 md:p-9 rounded-xl space-y-3 max-h-[400px] xl:max-h-[600px] overflow-y-scroll">
-                <button onClick={() => toggleChange(true)} className="text-3xl text-neutral-dark-blue"><i className="fa-solid fa-xmark" /></button>
+                <button onClick={() => toggleChange(true)} className="text-3xl text-neutral-dark-blue"><i className="fa-solid fa-xmark mb-4" /></button>
                 {userEls}
 
                     {valMessage &&
@@ -93,9 +100,9 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
                 <form onSubmit={newUser} className="mt-2 w-full flex flex-col items-end border rounded-lg px-3 py-2">
                     <div className="w-full flex h-8 md:h-12 items-center gap-3">
                         <img src={defautPfp} alt="" className="h-full" />
-                        <input className="border h-full w-full rounded-sm" type="text" name="username" placeholder="Username..." />
+                        <input className="border h-full w-full rounded-sm p-2" type="text" name="username" placeholder="Username..." />
                     </div>
-                    <button className="bg-primary-moderate-blue text-neutral-white h-full md:px-2 py-1.5 md:py-3 leading-tight min-w-28 rounded-lg mt-2" type="submit">Create User</button>
+                    <button className="bg-primary-moderate-blue text-neutral-white h-full md:px-2 py-1.5 md:py-3 leading-tight min-w-28 rounded-lg mt-2 hover:scale-105 transition-transform transform ease-linear" type="submit">Create User</button>
                 </form>
             </div>
         </>
