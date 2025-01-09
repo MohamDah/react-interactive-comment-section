@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repo](https://github.com/MohamDah/react-interactive-comment-section)
-- Live Site URL: [Live Site](https://interactive-comment-section-mohamdah.netlify.app/)
+- Live Site URL: [Live Site](https://mohamdah-interactive-comment-section.netlify.app/)
 
 ## My process
 
