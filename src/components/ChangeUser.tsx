@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { AllType, User } from "../types";
-import defautPfp from "../images/avatars/image-default.png"
+import { pfps } from "../utils";
 
 export default function ChangeUser({ data, toggleChange, setData }: { data: AllType, toggleChange: (value: boolean) => void, setData: React.Dispatch<React.SetStateAction<any>> }) {
     let userList: User[] = [...data.userList]
@@ -8,10 +8,12 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
 
     const userEls = userList.map(user => {
         const isUserCls = user.username === data.currentUser.username ? "opacity-50" : ""
+
+        const userPfp = (pfps as Record<string, string>)[user.username] || pfps.defaultPfp
         return (
             <div className="flex border rounded-lg overflow-hidden" key={user.username}>
                 <button  onClick={() => chUser(user)} disabled={!!isUserCls} className={`w-full  flex h-12 md:h-16 px-3 py-2 items-center gap-3 overflow-x-hidden ${isUserCls}`}>
-                    <img src={user.image.png} alt="profile picture" className="h-full" />
+                    <img src={userPfp} alt="profile picture" className="h-full" />
                     <p className="text-neutral-dark-blue text-base md:text-lg font-medium">{user.username}</p>
                     {isUserCls && <p className="font-medium text-neutral-dark-blue text-sm">Current User</p>}
                 </button>
@@ -45,8 +47,8 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
 
         const userObj: User = {
             image: {
-                png: defautPfp,
-                webp: defautPfp
+                png: pfps.defaultPfp,
+                webp: pfps.defaultPfp
             },
             username: username
         }
@@ -99,7 +101,7 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
                     }
                 <form onSubmit={newUser} className="mt-2 w-full flex flex-col items-end border rounded-lg px-3 py-2">
                     <div className="w-full flex h-8 md:h-12 items-center gap-3">
-                        <img src={defautPfp} alt="" className="h-full" />
+                        <img src={pfps.defaultPfp} alt="" className="h-full" />
                         <input className="border h-full w-full rounded-sm p-2" type="text" name="username" placeholder="Username..." />
                     </div>
                     <button className="bg-primary-moderate-blue text-neutral-white h-full md:px-2 py-1.5 md:py-3 leading-tight min-w-28 rounded-lg mt-2 hover:scale-105 transition-transform transform ease-linear" type="submit">Create User</button>

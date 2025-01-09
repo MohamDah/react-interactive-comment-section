@@ -5,7 +5,8 @@ import MakeComment from "./MakeComment";
 import { useState } from "react";
 import EditComment from "./EditComment";
 
-declare var require: any
+import { pfps } from "../utils";
+
 
 
 
@@ -17,6 +18,8 @@ export default function Comment({ comment, data, setData, parent, toggleWarning 
     parent: CommentType,
     toggleWarning: any
 }) {
+    const commentPfp = pfps[comment.user.username] || pfps.defaultPfp
+
     let replies: JSX.Element[] = [];
     if ("replies" in comment && comment.replies.length > 0) {
         replies = comment.replies.map(reply => <Comment comment={reply} key={reply.id} data={data} setData={setData} parent={comment} toggleWarning={toggleWarning} />)
@@ -179,7 +182,7 @@ export default function Comment({ comment, data, setData, parent, toggleWarning 
                 </div>
                 <div className="w-full">
                     <div className="h-8 md:h-10 flex items-center gap-2 md:gap-4 w-full">
-                        <img src={(comment.user.image.png)} alt=""
+                        <img src={commentPfp} alt=""
                             className="h-full" />
                         <p className="font-medium text-neutral-dark-blue md:text-lg">{comment.user.username}</p>
                         {data.currentUser.username === comment.user.username &&

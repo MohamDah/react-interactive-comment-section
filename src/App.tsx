@@ -1,4 +1,4 @@
-import jsonData from "./data"
+import jsonData from "./data.json"
 import './App.css'
 import Comment from "./components/Comment";
 import { useEffect, useState } from "react";
