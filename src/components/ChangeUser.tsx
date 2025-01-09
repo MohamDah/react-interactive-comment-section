@@ -18,7 +18,7 @@ export default function ChangeUser({ data, toggleChange, setData }: { data: AllT
                     {isUserCls && <p className="font-medium text-neutral-dark-blue text-sm">Current User</p>}
                 </button>
                 {
-                user.image.png === "./images/avatars/image-default.png" &&
+                userPfp === pfps.defaultPfp &&
                 user.username !== data.currentUser.username &&
                 <button className="px-2 bg-red-500 hover:bg-red-600 text-neutral-white font-medium" onClick={() => deleteUser(user)}>Delete</button>
                 }
